@@ -2,11 +2,13 @@
   "name": "sharedlayouttransitions",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Binu42.github.io/motion",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "framer-motion": "^2.0.0-beta.77",
+    "github-pages": "^3.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-progressive-image": "^0.6.0",
@@ -18,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
