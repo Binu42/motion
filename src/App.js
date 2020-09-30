@@ -17,12 +17,11 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename='/motion'>
       <Header />
       <Route
         render={({ location }) => (
-          // initial={false}
-          <AnimatePresence exitBeforeEnter>
+          <AnimatePresence initial={false} exitBeforeEnter>
             <Switch location={location} key={location.pathname}>
               <Route
                 exact
@@ -30,7 +29,6 @@ function App() {
                 render={() => <Home imageDetails={imageDetails} />}
               />
               <Route
-                exact
                 path='/model/:id'
                 render={() => <Model imageDetails={imageDetails} />}
               />
