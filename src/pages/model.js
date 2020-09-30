@@ -1,5 +1,6 @@
 import { motion, useTransform, useViewportScroll } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 //Components
 import ScrollForMore from "../components/scrollForMore";
 //Ease
@@ -43,11 +44,17 @@ const letterVariants = {
 
 const Model = ({ imageDetails: { width, height } }) => {
   const { scrollYProgress } = useViewportScroll();
-  console.log(scrollYProgress);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  console.log(scale)
+  const [canScroll, setCanScroll] = useState(false);
+  useEffect(() => {
+    if (!canScroll)
+      document.querySelector('body').classList.add('no-scroll');
+    else
+      document.querySelector('body').classList.remove('no-scroll');
+  }, [canScroll])
   return (
     <motion.div
+      onAnimationComplete={() => setCanScroll(true)}
       className='single'
       initial="intial"
       animate="animate"
@@ -66,27 +73,27 @@ const Model = ({ imageDetails: { width, height } }) => {
               className='details'
             >
               <div className='location'>
-                <span>28.538336</span>
-                <span>-81.379234</span>
+                <span>20.369349</span>
+                <span>71.346940</span>
               </div>
-              <div className='mua'>MUA: @mylifeascrystall</div>
+              <div className='mua'>MUA: @unknownmodel</div>
             </motion.div>
             <div className='model'>
               <motion.span variants={firstNameVariants} className='first'>
-                <motion.span variants={letterVariants}>Y</motion.span>
-                <motion.span variants={letterVariants}>a</motion.span>
-                <motion.span variants={letterVariants}>s</motion.span>
-                <motion.span variants={letterVariants}>m</motion.span>
-                <motion.span variants={letterVariants}>e</motion.span>
-                <motion.span variants={letterVariants}>e</motion.span>
-                <motion.span variants={letterVariants}>n</motion.span>
+                <motion.span variants={letterVariants}>D</motion.span>
+                <motion.span variants={letterVariants}>E</motion.span>
+                <motion.span variants={letterVariants}>E</motion.span>
+                <motion.span variants={letterVariants}>O</motion.span>
+                <motion.span variants={letterVariants}>I</motion.span>
+                <motion.span variants={letterVariants}>K</motion.span>
+                <motion.span variants={letterVariants}>A</motion.span>
               </motion.span>
               <motion.span variants={lastNameVariants} className='last'>
-                <motion.span variants={letterVariants}>T</motion.span>
-                <motion.span variants={letterVariants}>a</motion.span>
-                <motion.span variants={letterVariants}>r</motion.span>
-                <motion.span variants={letterVariants}>i</motion.span>
-                <motion.span variants={letterVariants}>q</motion.span>
+                <motion.span variants={letterVariants}>S</motion.span>
+                <motion.span variants={letterVariants}>I</motion.span>
+                <motion.span variants={letterVariants}>N</motion.span>
+                <motion.span variants={letterVariants}>G</motion.span>
+                <motion.span variants={letterVariants}>H</motion.span>
               </motion.span>
             </div>
           </div>
@@ -99,7 +106,7 @@ const Model = ({ imageDetails: { width, height } }) => {
                 animate={{
                   y: 0,
                   width: '100%',
-                  height: window.innerWidth > 1500 ? 800 : 400,
+                  height: window.innerWidth > 1500 ? 600 : 400,
                   transition: { delay: 0.2, ...transition }
                 }}
               >
@@ -108,7 +115,7 @@ const Model = ({ imageDetails: { width, height } }) => {
                     style={{ 'scale': scale }}
                     initial={{ scale: 1.1 }}
                     animate={{
-                      y: window.innerWidth > 1500 ? -400 : -100,
+                      y: window.innerWidth > 1500 ? -500 : -100,
                       transition: { delay: 0.2, ...transition }
                     }}
                     src={require("../images/model.jpg")}
