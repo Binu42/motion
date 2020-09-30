@@ -8,11 +8,12 @@ import Model from "./pages/model";
 import Header from "./components/header";
 //Styles
 import "./App.scss";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const imageDetails = {
     width: 524,
-    height: 650,
+    height: 600,
   };
 
   return (
@@ -20,18 +21,21 @@ function App() {
       <Header />
       <Route
         render={({ location }) => (
-          <Switch location={location} key={location.pathname}>
-            <Route
-              exact
-              path='/'
-              render={() => <Home imageDetails={imageDetails} />}
-            />
-            <Route
-              exact
-              path='/model/:id'
-              render={() => <Model imageDetails={imageDetails} />}
-            />
-          </Switch>
+          // initial={false}
+          <AnimatePresence exitBeforeEnter>
+            <Switch location={location} key={location.pathname}>
+              <Route
+                exact
+                path='/'
+                render={() => <Home imageDetails={imageDetails} />}
+              />
+              <Route
+                exact
+                path='/model/:id'
+                render={() => <Model imageDetails={imageDetails} />}
+              />
+            </Switch>
+          </AnimatePresence>
         )}
       />
     </Router>
